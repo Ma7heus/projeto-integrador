@@ -1,6 +1,7 @@
 package br.com.baraabb.service;
 
-import javax.ws.rs.core.Response;
+import br.com.baraabb.DTO.AbstractDTO;
+import br.com.baraabb.model.AbstractEntity;
 
 /**
  * 
@@ -10,14 +11,18 @@ import javax.ws.rs.core.Response;
  * @param <ID> Tipo id entidade
  */
 
-public interface IGenericService<DTO, ID> {
+public interface IGenericService<DTO extends AbstractDTO, E extends AbstractEntity, ID> {
 	
 	public DTO find(ID idDto);
 	
-	public Response update(DTO dto);
+	public void update(DTO dto);
 	
-	public Response delete(ID id);
+	public void delete(ID id);
 	
-	public Response insert(DTO dto);
+	public void insert(DTO dto);
+	
+	public E conversor(DTO dto);
+	
+	public void validador(E entity);
 
 }

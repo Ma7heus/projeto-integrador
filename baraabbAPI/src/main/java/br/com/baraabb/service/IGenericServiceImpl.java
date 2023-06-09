@@ -1,7 +1,7 @@
 package br.com.baraabb.service;
 
-import javax.enterprise.inject.spi.CDIProvider;
-import javax.ws.rs.core.Response;
+import br.com.baraabb.DTO.AbstractDTO;
+import br.com.baraabb.model.AbstractEntity;
 
 /**
  * 
@@ -11,35 +11,8 @@ import javax.ws.rs.core.Response;
  * @param <ID>
  */
 
-public class IGenericServiceImpl<DTO, ID> implements IGenericService<DTO, ID> {
+public abstract class IGenericServiceImpl<DTO extends AbstractDTO, E extends AbstractEntity, ID> implements IGenericService<DTO, E, ID> {
 
 	
-	private EAO eao;
 	
-	@Override
-	public DTO find(ID idDto) {
-		// TODO Auto-generated method stub
-		
-		
-		return null;
-	}
-
-	@Override
-	public Response update(DTO dto) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Response delete(ID id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Response insert(DTO dto) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

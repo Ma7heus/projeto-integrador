@@ -1,5 +1,8 @@
 package br.com.baraabb.service;
 
+import br.com.baraabb.DTO.AbstractDTO;
+import br.com.baraabb.model.AbstractEntity;
+
 /**
  * 
  * @author biasi
@@ -8,6 +11,6 @@ package br.com.baraabb.service;
  * @param <ID>
  */
 
-public abstract class GenericService<T, ID> implements IGenericService<T, ID> {
-
+public abstract class GenericService<DTO extends AbstractDTO,E extends AbstractEntity, ID> implements IGenericService<DTO, E, ID> {
+ 
 }

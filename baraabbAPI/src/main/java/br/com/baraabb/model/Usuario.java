@@ -1,8 +1,10 @@
 package br.com.baraabb.model;
 
-import java.io.Serializable;
-
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -13,10 +15,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "BARAABB_USUARIO")
-public class Usuario implements Serializable {
+public class Usuario extends AbstractEntity {
 
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@SequenceGenerator(allocationSize = 1, sequenceName = "IDUSUARIO", name = "SEQUENCE_IDUSUARIO")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "SEQUENCE_IDUSUARIO")
 	private Long idUsuario;
 	
 	private String senha;
@@ -55,6 +60,11 @@ public class Usuario implements Serializable {
 
 	public void setLogin(String login) {
 		this.login = login;
+	}
+
+	@Override
+	public Long getId() {
+		return idUsuario;
 	}
 	
 }

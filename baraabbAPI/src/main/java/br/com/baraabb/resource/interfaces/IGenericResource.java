@@ -1,5 +1,7 @@
 package br.com.baraabb.resource.interfaces;
 
+import java.util.List;
+
 import javax.annotation.security.PermitAll;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -12,24 +14,26 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import br.com.baraabb.DTO.AbstractDTO;
+
 /**
  * 
  * @author biasi
  *
  */
 
-@Path("usuario")
+@Path("/usuario")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public interface IGenericResource<DTO> {	
+public interface IGenericResource<DTO extends AbstractDTO> {	
 	
 	@GET
-	@Path("find")
-	public Response findAll();
+	@Path("/find")
+	public List<DTO> findAll();
 
 	@GET
-	@Path("find/{idEntidade}")
-	public Response findById(@PathParam("idEntidade") Long idEntidade);
+	@Path("/find/{idEntidade}")
+	public DTO findById(@PathParam("idEntidade") Long idEntidade);
 
 	@POST
 	@PermitAll
