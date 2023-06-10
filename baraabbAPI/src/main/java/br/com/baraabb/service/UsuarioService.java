@@ -1,5 +1,7 @@
 package br.com.baraabb.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import br.com.baraabb.DAO.UsuarioDAO;
@@ -17,40 +19,30 @@ public class UsuarioService extends GenericService<UsuarioDTO, Usuario, Long> {
 
 	@Inject
 	private UsuarioDAO eao;
-	
-	@Inject
-	private ConversorUsuario conversor;
 
 	@Override
 	public UsuarioDTO find(Long id) {
-		return conversor.entityToDTO(getEao().buscaById(id));
+		return ConversorUsuario.entityToDTO(getEao().buscaById(id));
+	}
+	
+	@Override
+	public List<UsuarioDTO> findAll() {
+		return ConversorUsuario.entityToDTOList(getEao().selectAll());
 	}
 
 	@Override
 	public void update(UsuarioDTO dto) {
-		// TODO Auto-generated method stub
-		
+		getEao().atualizar(ConversorUsuario.dtoToEntity(dto));
 	}
 
 	@Override
 	public void delete(Long id) {
-		// TODO Auto-generated method stub
-		
+		getEao().deletar(id);
 	}
 
 	@Override
 	public void insert(UsuarioDTO dto) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Usuario conversor(UsuarioDTO dto) {
-		return null;
-	}
-
-	@Override
-	public void validador(Usuario entity) {
+		getEao().cadastrar(ConversorUsuario.dtoToEntity(dto));
 	}
 
 	public UsuarioDAO getEao() {
@@ -60,6 +52,5 @@ public class UsuarioService extends GenericService<UsuarioDTO, Usuario, Long> {
 	public void setEao(UsuarioDAO eao) {
 		this.eao = eao;
 	}
-	
 
 }

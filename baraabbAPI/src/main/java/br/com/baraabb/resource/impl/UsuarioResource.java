@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.ManagedBean;
 import javax.inject.Inject;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import br.com.baraabb.DTO.UsuarioDTO;
 import br.com.baraabb.resource.interfaces.IGenericResource;
@@ -32,8 +33,7 @@ public class UsuarioResource implements IGenericResource<UsuarioDTO> {
 
 	@Override
 	public List<UsuarioDTO> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return getService().findAll();
 	}
 
 	@Override
@@ -42,21 +42,21 @@ public class UsuarioResource implements IGenericResource<UsuarioDTO> {
 	}
 
 	@Override
-	public Response cadastrar(UsuarioDTO entidadeDTO) {
-		// TODO Auto-generated method stub
-		return null;
+	public Response cadastrar(UsuarioDTO dto) {
+		getService().insert(dto);;
+		return Response.ok(Status.CREATED).build();
 	}
 
 	@Override
-	public Response atualiza(Long idEntidade, UsuarioDTO entidadeDTO) {
-		// TODO Auto-generated method stub
-		return null;
+	public Response atualiza(Long idEntidade, UsuarioDTO dto) {
+		getService().update(dto);
+		return Response.ok(Status.ACCEPTED).build();
 	}
 
 	@Override
 	public Response deleta(Long idEntidade) {
-		// TODO Auto-generated method stub
-		return null;
+		getService().delete(idEntidade);
+		return Response.ok(Status.NO_CONTENT).build();
 	}
 
 }

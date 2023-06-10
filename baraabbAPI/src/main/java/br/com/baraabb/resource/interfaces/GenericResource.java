@@ -6,8 +6,6 @@ import javax.ws.rs.core.Response;
 
 import br.com.baraabb.DAO.GenericDAO;
 import br.com.baraabb.DTO.AbstractDTO;
-import br.com.baraabb.utils.DTOConverter;
-import br.com.baraabb.utils.EntityConverter;
 
 public class GenericResource<DTO extends AbstractDTO,VO,DAO extends GenericDAO<E, Long> ,S,E> implements IGenericResource<DTO> {
 
@@ -21,10 +19,7 @@ public class GenericResource<DTO extends AbstractDTO,VO,DAO extends GenericDAO<E
 	
 	private Class<S> service;
 	
-	private DTOConverter DTOConverter = new DTOConverter();
 	
-	private EntityConverter entityConverter = new EntityConverter();
-
 	public GenericResource(Class<DTO> dto, Class<E> entity, Class<DAO> dao, Class<VO> vo, Class<S> service) {
 		this.dto = dto;
 		this.entity = entity;
@@ -99,22 +94,6 @@ public class GenericResource<DTO extends AbstractDTO,VO,DAO extends GenericDAO<E
 
 	public void setService(Class<S> service) {
 		this.service = service;
-	}
-
-	public DTOConverter getDTOConverter() {
-		return DTOConverter;
-	}
-
-	public void setDTOConverter(DTOConverter dTOConverter) {
-		DTOConverter = dTOConverter;
-	}
-
-	public EntityConverter getEntityConverter() {
-		return entityConverter;
-	}
-
-	public void setEntityConverter(EntityConverter entityConverter) {
-		this.entityConverter = entityConverter;
 	}
 
 }
