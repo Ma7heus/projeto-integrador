@@ -1,9 +1,13 @@
 package br.com.baraabb.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -29,6 +33,10 @@ public class Usuario extends AbstractEntity {
 	private String email;
 	
 	private String login;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "IDTIPOUSUARIO", foreignKey = @ForeignKey(name="FK_USUARIO_TPUSUARIO"))
+	private TipoUsuario tipoUsuario;
 
 	public Long getIdUsuario() {
 		return idUsuario;
@@ -65,6 +73,14 @@ public class Usuario extends AbstractEntity {
 	@Override
 	public Long getId() {
 		return idUsuario;
+	}
+
+	public TipoUsuario getTipoUsuario() {
+		return tipoUsuario;
+	}
+
+	public void setTipoUsuario(TipoUsuario tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
 	}
 	
 }

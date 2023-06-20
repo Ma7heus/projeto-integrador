@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,11 +27,11 @@ public class Produto extends AbstractEntity {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "SEQUENCE_IDPRODUTO")
 	private Long idProduto;
 	
-	private String descricao;
-	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "IDCATEGORIAPRODUTO")
+	@JoinColumn(name = "IDCATEGORIAPRODUTO", foreignKey = @ForeignKey(name="FK_PRODUTO_CATEGORIAPROD"))
 	private CategoriaProduto categoriaProduto;
+	
+	private String descricao;
 	
 	private BigDecimal precoCompra;
 	
